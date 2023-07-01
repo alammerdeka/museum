@@ -17,3 +17,4 @@ part 'main_page.dart';
 part 'opening_page.dart';
 part 'login_page.dart';
 part 'register_page.dart';
+part 'user_page.dart';

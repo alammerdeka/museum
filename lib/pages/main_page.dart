@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
         },
         children: [
           HomePage(),
-          HomePage(),
+          UserPage(),
         ],
       ),
       bottomNavigationBar: Container(
