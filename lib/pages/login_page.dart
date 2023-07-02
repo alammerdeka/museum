@@ -1,16 +1,33 @@
 part of 'pages.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
+   LoginPage({Key? key}) : super(key: key);
+  final controllerUsername = TextEditingController();
+  final controllerPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    login(BuildContext context) {
+      Services.login(controllerUsername.text, controllerPassword.text)
+          .then((responseBody) {
+        if (responseBody!.status==true) {
+          User user =  responseBody;
+          Session.setUser(user);
+          context.read<CUser>().data = user;
+          DInfo.dialogSuccess(context, 'Login Success');
+          DInfo.closeDialog(context, actionAfterClose: () {
+            context.go(AppRoute.loader);
+          });
+        } else {
+          DInfo.snackBarError(context, 'Login Failed');
+        }
+      });
+    }
     Widget header() {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Text(
               'Masuk.',
               style: TextStyle(fontSize: 44, fontWeight: FontWeight.bold),
@@ -27,15 +44,17 @@ class LoginPage extends StatelessWidget {
             child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
-            Text('Email'),
+            const Text('Email'),
             SizedBox(
               height: 8,
             ),
             Container(
-              child: TextFormField(),
+              child: TextFormField(
+                controller: controllerUsername,
+              ),
             ),
             SizedBox(
               height: 8,
@@ -46,6 +65,7 @@ class LoginPage extends StatelessWidget {
             ),
             Container(
               child: TextFormField(
+                controller: controllerPassword,
                 obscureText: true,
               ),
             ),
@@ -60,7 +80,7 @@ class LoginPage extends StatelessWidget {
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black),
 
                   child: const Center(child: Text('Masuk'),),), onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>MainPage()));
+              login(context);
             }),
             SizedBox(
               height: 8,
