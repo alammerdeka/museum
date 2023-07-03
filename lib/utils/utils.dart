@@ -19,3 +19,4 @@ part 'c_user.dart';
 part 'faq_provider.dart';
 part 'tentang_provider.dart';
 part 'my_color.dart';
+part 'museum_provider.dart';

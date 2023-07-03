@@ -1,8 +1,15 @@
 part of 'pages.dart';
 
-class UserPage extends StatelessWidget {
+class UserPage extends StatefulWidget {
   UserPage({Key? key}) : super(key: key);
+
+  @override
+  State<UserPage> createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
   String? _textGender;
+
   int? _intGender;
 
   final controllerPengNama = TextEditingController();
@@ -14,14 +21,17 @@ class UserPage extends StatelessWidget {
   final controllerPengInstansi = TextEditingController();
 
   final controllerPengPass = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var cUser = context.read<CUser>();
     logout(BuildContext context) {
       DInfo.dialogConfirmation(
+        textNo:'Tidak',
+        textYes:'Ya',
         context,
-        'Logout',
-        'Tap Yes to confirm',
+        'Keluar',
+        'Tekan Ya untuk keluar',
       ).then((yes) {
         if (yes ?? false) {
           Session.clearUser().then((success) {
@@ -142,27 +152,30 @@ class UserPage extends StatelessWidget {
             height: 4,
           ),
           TextFormField(
+            onTap:(){
+              _openGenderPicker(context);
+            } ,
             readOnly: true,
             decoration: InputDecoration(hintText:    _textGender??cUser.data!.pengJenisKelamin??'', hintStyle: TextStyle(color: Colors.black)),
           ),
           SizedBox(
             height: 4,
           ),
-          Text(
-            'Kata Sandi',
-            style: TextStyle(fontSize: 14),
-          ),
-          SizedBox(
-            height: 4,
-          ),
-          TextFormField(
-            controller: controllerPengPass,
-            obscureText: true,
-            decoration: InputDecoration(hintText:   '*******', hintStyle: TextStyle(color: Colors.black)),
-          ),
-          SizedBox(
-            height: 4,
-          ),
+          // Text(
+          //   'Kata Sandi',
+          //   style: TextStyle(fontSize: 14),
+          // ),
+          // SizedBox(
+          //   height: 4,
+          // ),
+          // TextFormField(
+          //   controller: controllerPengPass,
+          //   obscureText: true,
+          //   decoration: InputDecoration(hintText:   '*******', hintStyle: TextStyle(color: Colors.black)),
+          // ),
+          // SizedBox(
+          //   height: 4,
+          // ),
           CupertinoButton(
               alignment: Alignment.centerLeft,
               color: Colors.white,
@@ -170,7 +183,7 @@ class UserPage extends StatelessWidget {
                 height: 40,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.black),
+                    color: MyColor.myPrimCol),
                 child: const Center(
                   child: Text('Simpan Perubahan'),
                 ),
@@ -222,5 +235,46 @@ class UserPage extends StatelessWidget {
             }),
       ),
     );
+  }
+
+  void _openGenderPicker(BuildContext context) {
+    BottomPicker(
+      items: const [
+        Text('Laki-laki',style: TextStyle(color: Colors.black),),
+        Text('Perempuan'),
+      ],
+      title: 'Jenis Kelamin',
+      pickerTextStyle: const TextStyle(
+        color: Colors.black,
+      ),
+      onChange: (index) {
+        setState(() {
+
+        });
+        _textGender = null;
+        _intGender = index;
+        _intGender == 0
+            ? _textGender = 'Laki-laki'
+            : _textGender = 'Perempuan';
+        print(_textGender);
+
+      },
+      onSubmit: (index) {
+        setState(() {
+
+        });
+        _textGender = null;
+        _intGender = index;
+        _intGender == 1
+            ? _textGender = 'Perempuan'
+            : _textGender = 'Laki-laki';
+        print(_textGender);
+
+      },
+      buttonText: 'Konfirmasi',
+      displayButtonIcon: false,
+      buttonTextStyle: const TextStyle(color: Colors.white),
+      buttonSingleColor: Colors.black,
+    ).show(context);
   }
 }

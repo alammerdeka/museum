@@ -16,12 +16,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    MuseumProvider museumProvider = Provider.of<MuseumProvider>(context);
     return SafeArea(
         child: Scaffold(
-      body: Column(
-        children:
-        videos.map((e) => CardWidget(e, video: e,)).toList()
-          ,
+      body: SingleChildScrollView(
+        child: Column(
+          children:
+          museumProvider.museum.map((e) => CardWidget(e, museum: e,)).toList()
+            ,
+        ),
       ),
     ));
   }

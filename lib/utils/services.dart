@@ -108,4 +108,22 @@ class Services{
        return data;
      }
    }
+   Future<List<Museum>>getMuseum()async{
+     var responseMuseum = await http.get(Uri.parse(Apis.getMuseum)
+     );
+     if(responseMuseum.statusCode==200){
+       print(responseMuseum.body);
+       List data = jsonDecode(responseMuseum.body);
+       List<Museum> museum = [];
+
+       for(var itemAll in data){
+         museum.add(Museum.fromJson(itemAll));
+       }
+       return museum;
+     }else{
+       throw Exception('Gagal get museum');
+     }
+
+   }
+
 }

@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MultiProvider(
       providers: [
+        ChangeNotifierProvider<MuseumProvider>(
+            create: (context) => MuseumProvider()),
         ChangeNotifierProvider<TentangProvider>(
             create: (context) => TentangProvider()),
         ChangeNotifierProvider<FaqProvider>(

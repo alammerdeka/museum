@@ -37,7 +37,8 @@ class _RegisterPageState extends State<RegisterPage> {
         print(responseBody);
         if (responseBody!.status==true) {
           DInfo.snackBarSuccess(context, 'Register Success');
-          context.go(AppRoute.login);
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => LoginPage()));
         } else {
           if (responseBody!.status==false) {
             DInfo.snackBarError(context, responseBody.pengEmail!);

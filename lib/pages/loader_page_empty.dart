@@ -9,6 +9,7 @@ class LoaderPageEmpty extends StatefulWidget {
 class _LoaderPageEmptyState extends State<LoaderPageEmpty> {
 
   getInit() async {
+    await Provider.of<MuseumProvider>(context,listen:false).getMuseumList();
     await Provider.of<TentangProvider>(context,listen:false).getTentang();
     await Provider.of<FaqProvider>(context,listen:false).getUnitKerja();
     if (context.mounted) {

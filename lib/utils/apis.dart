@@ -8,4 +8,5 @@ class Apis{
   static const String getTentang = '${baseUrl}tentang';
   static const String putProfile = '${baseUrl}profil';
   static const String getProfileByEmail = '${baseUrl}profil?pengEmail=';
+  static const String getMuseum = '${baseUrl}museum';
 }

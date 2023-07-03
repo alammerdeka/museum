@@ -13,8 +13,16 @@ class _MainPageState extends State<MainPage> {
       title: 'Beranda',
     ),
     TabItem(
+      icon: CupertinoIcons.question_square_fill,
+      title: 'Faq',
+    ),
+    TabItem(
+      icon: CupertinoIcons.square_list_fill,
+      title: 'Tentang',
+    ),
+    TabItem(
       icon: CupertinoIcons.person_crop_circle,
-      title: 'Akun Saya',
+      title: 'Profil',
     ),
   ];
   int selectedPage = 0;
@@ -32,6 +40,8 @@ class _MainPageState extends State<MainPage> {
         },
         children: [
           HomePage(),
+          FaqPage(),
+          TentangPage(),
           UserPage(),
         ],
       ),
@@ -54,7 +64,7 @@ class _MainPageState extends State<MainPage> {
           animated: true,
           titleStyle: TextStyle(fontSize: 8),
           itemStyle: ItemStyle.circle,
-          chipStyle: ChipStyle(convexBridge: true,background: MyColor.mySecondCol,notchSmoothness: NotchSmoothness.smoothEdge),
+          chipStyle: ChipStyle(convexBridge: true,background: MyColor.myPrimCol,notchSmoothness: NotchSmoothness.smoothEdge),
         ),
       ),
     );

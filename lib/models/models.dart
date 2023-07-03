@@ -3,3 +3,4 @@ part 'global_response.dart';
 part 'user.dart';
 part 'faq.dart';
 part 'tentang.dart';
+part 'museum.dart';
