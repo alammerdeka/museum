@@ -17,6 +17,22 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cUser = context.read<CUser>();
+    logout(BuildContext context) {
+      DInfo.dialogConfirmation(
+        context,
+        'Logout',
+        'Tap Yes to confirm',
+      ).then((yes) {
+        if (yes ?? false) {
+          Session.clearUser().then((success) {
+            if (success) {
+              context.read<CUser>().data = null;
+              context.go(AppRoute.login);
+            }
+          });
+        }
+      });
+    }
     login(BuildContext context) {
       Services.getUser(cUser.data!.pengEmail!)
           .then((responseBody) {
@@ -71,7 +87,7 @@ class UserPage extends StatelessWidget {
           ),
           TextFormField(
             controller: controllerPengNama,
-            decoration: InputDecoration(hintText: cUser.data!.pengNama!, hintStyle: TextStyle(color: Colors.black)),
+            decoration: InputDecoration(hintText: cUser.data!.pengNama??'', hintStyle: TextStyle(color: Colors.black)),
           ),
           SizedBox(
             height: 4,
@@ -85,7 +101,7 @@ class UserPage extends StatelessWidget {
           ),
           TextFormField(
             controller: controllerPengEmail,
-            decoration: InputDecoration(hintText:  cUser.data!.pengEmail!, hintStyle: TextStyle(color: Colors.black)),
+            decoration: InputDecoration(hintText:  cUser.data!.pengEmail??'', hintStyle: TextStyle(color: Colors.black)),
           ),
           SizedBox(
             height: 4,
@@ -99,7 +115,7 @@ class UserPage extends StatelessWidget {
           ),
           TextFormField(
             controller: controllerPengInstansi,
-            decoration: InputDecoration(hintText:   cUser.data!.pengInstansi!, hintStyle: TextStyle(color: Colors.black)),
+            decoration: InputDecoration(hintText:   cUser.data!.pengInstansi??'', hintStyle: TextStyle(color: Colors.black)),
           ),
           SizedBox(
             height: 4,
@@ -113,7 +129,7 @@ class UserPage extends StatelessWidget {
           ),
           TextFormField(
             controller: controllerPengTlp,
-            decoration: InputDecoration(hintText:   cUser.data!.pengTlp!, hintStyle: TextStyle(color: Colors.black)),
+            decoration: InputDecoration(hintText:   cUser.data!.pengTlp??'', hintStyle: TextStyle(color: Colors.black)),
           ),
           SizedBox(
             height: 4,
@@ -127,7 +143,7 @@ class UserPage extends StatelessWidget {
           ),
           TextFormField(
             readOnly: true,
-            decoration: InputDecoration(hintText:    _textGender??cUser.data!.pengJenisKelamin!, hintStyle: TextStyle(color: Colors.black)),
+            decoration: InputDecoration(hintText:    _textGender??cUser.data!.pengJenisKelamin??'', hintStyle: TextStyle(color: Colors.black)),
           ),
           SizedBox(
             height: 4,
@@ -182,7 +198,7 @@ class UserPage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView(children: [
-            userInfo()
+            cUser.data==null?SizedBox():userInfo()
           ],),
         ),
         bottomNavigationBar: CupertinoButton(
@@ -201,6 +217,7 @@ class UserPage extends StatelessWidget {
               ),
             ),
             onPressed: () {
+              logout(context);
             print('goLogout');
             }),
       ),

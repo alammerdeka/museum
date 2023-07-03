@@ -1,6 +1,6 @@
 part of 'utils.dart';
 class AppRoute {
-  static const home = '/';
+  static const home = '/home';
   static const login = '/login';
   static const register = '/register';
   static const walkThrough = '/walkThrough';
@@ -27,7 +27,7 @@ class AppRoute {
     routes: [
       GoRoute(
         path: home,
-        builder: (context, state) => const MainPage(),
+        builder: (context, state) =>  HomePage(),
       ),
       GoRoute(
         path: login,

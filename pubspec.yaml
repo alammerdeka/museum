@@ -47,6 +47,7 @@ dependencies:
   bottom_picker: ^2.0.4
   provider: ^6.0.4
   crypto: ^3.0.3
+  supercharged: ^2.1.1
 
 dev_dependencies:
   flutter_test:

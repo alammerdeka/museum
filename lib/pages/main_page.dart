@@ -54,7 +54,7 @@ class _MainPageState extends State<MainPage> {
           animated: true,
           titleStyle: TextStyle(fontSize: 8),
           itemStyle: ItemStyle.circle,
-          chipStyle:const ChipStyle(convexBridge: true,background: Colors.black,notchSmoothness: NotchSmoothness.smoothEdge),
+          chipStyle: ChipStyle(convexBridge: true,background: MyColor.mySecondCol,notchSmoothness: NotchSmoothness.smoothEdge),
         ),
       ),
     );

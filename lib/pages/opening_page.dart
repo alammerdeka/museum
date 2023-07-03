@@ -6,18 +6,20 @@ class OpeningPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget image() {
-      return SizedBox(
-        height: MediaQuery.of(context).size.height / 2,
-        child: Image.asset(
-          'assets/banner.jpg',
-          fit: BoxFit.cover,
+      return Padding(
+        padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height / 6),
+        child: SizedBox(
+          child: Image.asset(
+            'assets/bannerin.png',
+           scale: 1.4,
+          ),
         ),
       );
     }
 
     Widget description() {
       return SizedBox(
-          height: MediaQuery.of(context).size.height / 2,
+
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
@@ -25,7 +27,7 @@ class OpeningPage extends StatelessWidget {
               children:  const [
                 SizedBox(height: 20,),
                 Text(
-                  'Selamat Datang di Aplikasi Pemandu Museum',
+                  'Selamat Datang di Aplikasi Museum Banten',
                   style: TextStyle(fontSize: 24),
                 ),
                 SizedBox(height: 20,),

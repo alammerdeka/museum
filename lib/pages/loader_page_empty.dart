@@ -11,16 +11,11 @@ class _LoaderPageEmptyState extends State<LoaderPageEmpty> {
   getInit() async {
     await Provider.of<TentangProvider>(context,listen:false).getTentang();
     await Provider.of<FaqProvider>(context,listen:false).getUnitKerja();
-
-
-    if (mounted) {
-      Navigator.of(context);
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MainPage()));
-
-      });
+    if (context.mounted) {
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>const MainPage()));
     }
+
+
   }
   @override
   void initState() {
@@ -31,10 +26,19 @@ class _LoaderPageEmptyState extends State<LoaderPageEmpty> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-          body: Center(child: CircularProgressIndicator()) // this will show when loading is true
-             // this will show when loading is false
+        backgroundColor: Colors.white,
+            body: Center(
+              child: Image.asset('assets/bannerin.png',scale: 1.5,),
+            ),
+        bottomNavigationBar: Container(
+            height: 60,
+            padding: EdgeInsets.only(bottom: 20),
+            child: Center(child: const CircularProgressIndicator(color: Colors.white,))),// this will show when loading is true
+          // this will show when loading is false
+
+
       ),
     );
   }

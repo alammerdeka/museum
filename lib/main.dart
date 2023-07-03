@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<CUser>(
             create: (context) => CUser()),
       ],
+
       builder: (context, child) {
         Session.getUser().then((user) {
           if (user != null) context.read<CUser>().data = user;
@@ -30,9 +31,14 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: AppRoute.routerConfig,
+
         );
+
+
       },
+
     );
+
   }
   }
 
