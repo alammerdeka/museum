@@ -27,7 +27,6 @@ class Services{
   }
    static Future<GlobalResponse?> putProfile(
        String pengNama,
-       String pengEmail,
        String pengTlp,
        String pengInstansi,
        String pengJenisKelamin,
@@ -36,7 +35,6 @@ class Services{
      try {
        Response response = await Client().put(Uri.parse(url), body: {
          'pengNama': pengNama,
-         'pengEmail': pengEmail,
          'pengTlp': pengTlp,
          'pengInstansi' : pengInstansi,
          'pengJenisKelamin' : pengJenisKelamin,
@@ -124,6 +122,28 @@ class Services{
        throw Exception('Gagal get museum');
      }
 
+   }
+   static Future<GlobalResponse?> putPassword(
+       String pengEmail,
+       String old,
+       String baru,
+       String konfirmasi_baru,
+       ) async {
+     var url = Apis.putPassword;
+     try {
+       Response response = await Client().put(Uri.parse(url), body: {
+         'pengEmail': pengEmail,
+         'old': old,
+         'new': baru,
+         'new_confirm' : konfirmasi_baru,
+       });
+       DMethod.printTitle('User Source - change  password', response.body);
+       GlobalResponse responseBody =  GlobalResponse.fromJson(jsonDecode(response.body));
+       return responseBody;
+     } catch (e) {
+       DMethod.printTitle('User Source - change  password', e.toString());
+       return null;
+     }
    }
 
 }

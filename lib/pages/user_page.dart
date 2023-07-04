@@ -59,11 +59,10 @@ class _UserPageState extends State<UserPage> {
         }
       });
     }
-    register(String pengNama, String pengEmail, String pengTlp, String pengInstansi,
+    register(String pengNama, String pengTlp, String pengInstansi,
         String pengJenisKelamin){
       Services.putProfile(
         pengNama,
-        pengEmail,
           pengTlp,
           pengInstansi,
           pengJenisKelamin
@@ -98,20 +97,6 @@ class _UserPageState extends State<UserPage> {
           TextFormField(
             controller: controllerPengNama,
             decoration: InputDecoration(hintText: cUser.data!.pengNama??'', hintStyle: TextStyle(color: Colors.black)),
-          ),
-          SizedBox(
-            height: 4,
-          ),
-          Text(
-            'Email',
-            style: TextStyle(fontSize: 14),
-          ),
-          SizedBox(
-            height: 4,
-          ),
-          TextFormField(
-            controller: controllerPengEmail,
-            decoration: InputDecoration(hintText:  cUser.data!.pengEmail??'', hintStyle: TextStyle(color: Colors.black)),
           ),
           SizedBox(
             height: 4,
@@ -161,6 +146,23 @@ class _UserPageState extends State<UserPage> {
           SizedBox(
             height: 4,
           ),
+          Text(
+            'Kata Sandi',
+            style: TextStyle(fontSize: 14),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          TextFormField(
+            onTap:(){
+              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>PwdPage()));
+            } ,
+            readOnly: true,
+            decoration: InputDecoration(hintText:'Klik untuk ubah kata sandi', hintStyle: TextStyle(color: Colors.black)),
+          ),
+          SizedBox(
+            height: 4,
+          ),
           // Text(
           //   'Kata Sandi',
           //   style: TextStyle(fontSize: 14),
@@ -190,12 +192,10 @@ class _UserPageState extends State<UserPage> {
               ),
               onPressed: () {
                 print(controllerPengNama.text);
-                print(controllerPengEmail.text);
                 print(controllerPengTlp.text);
                 print(controllerPengInstansi.text);
                 register(
                   controllerPengNama.text.isEmpty?cUser.data!.pengNama!:controllerPengNama.text,
-                  controllerPengEmail.text.isEmpty?cUser.data!.pengEmail!:controllerPengEmail.text,
                   controllerPengTlp.text.isEmpty?cUser.data!.pengTlp!:controllerPengTlp.text,
                   controllerPengInstansi.text.isEmpty?cUser.data!.pengInstansi!:controllerPengInstansi.text,
                   _textGender==null?cUser.data!.pengJenisKelamin!:_textGender!

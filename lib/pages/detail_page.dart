@@ -151,7 +151,7 @@ class _DetailPageState extends State<DetailPage> {
                       'Terbuat dari',
                       style: TextStyle(fontSize: 12, color: MyColor.myPrimCol),
                     ),
-                    Text(widget.museum.museumDitemukan!),
+                    Text(widget.museum.museumTerbuat!),
                   ],
                 ),
               ],

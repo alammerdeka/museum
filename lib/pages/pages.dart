@@ -32,3 +32,4 @@ part 'error_page.dart';
 part 'loader_page_empty.dart';
 part 'faq_page.dart';
 part 'tentang_page.dart';
+part 'pwd_page.dart';

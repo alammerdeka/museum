@@ -45,6 +45,7 @@ class AppRoute {
         path: loader,
         builder: (context, state) => LoaderPageEmpty(),
       ),
+
       // GoRoute(
       //   path: detailBeasiswa,
       //   builder: (context, state) =>
