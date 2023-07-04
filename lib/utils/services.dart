@@ -26,6 +26,7 @@ class Services{
     }
   }
    static Future<GlobalResponse?> putProfile(
+       String pengEmail,
        String pengNama,
        String pengTlp,
        String pengInstansi,
@@ -34,6 +35,7 @@ class Services{
      var url = Apis.putProfile;
      try {
        Response response = await Client().put(Uri.parse(url), body: {
+         'pengEmail':pengEmail,
          'pengNama': pengNama,
          'pengTlp': pengTlp,
          'pengInstansi' : pengInstansi,

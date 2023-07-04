@@ -59,9 +59,10 @@ class _UserPageState extends State<UserPage> {
         }
       });
     }
-    register(String pengNama, String pengTlp, String pengInstansi,
+    register(String pengEmail, String pengNama, String pengTlp, String pengInstansi,
         String pengJenisKelamin){
       Services.putProfile(
+        pengEmail,
         pengNama,
           pengTlp,
           pengInstansi,
@@ -195,6 +196,7 @@ class _UserPageState extends State<UserPage> {
                 print(controllerPengTlp.text);
                 print(controllerPengInstansi.text);
                 register(
+                  cUser.data!.pengEmail!,
                   controllerPengNama.text.isEmpty?cUser.data!.pengNama!:controllerPengNama.text,
                   controllerPengTlp.text.isEmpty?cUser.data!.pengTlp!:controllerPengTlp.text,
                   controllerPengInstansi.text.isEmpty?cUser.data!.pengInstansi!:controllerPengInstansi.text,
