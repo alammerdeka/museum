@@ -141,7 +141,7 @@ class _DetailPageState extends State<DetailPage> {
                       'Ditemukan Pada',
                       style: TextStyle(fontSize: 12, color: MyColor.myPrimCol),
                     ),
-                    Text(widget.museum.museumDitemukan!),
+                    Text(widget.museum.museumDitemukanPada!),
                   ],
                 ),
                 Column(

@@ -1,15 +1,31 @@
 part of 'pages.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
    LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool _isLoading = false;
+
   final controllerUsername = TextEditingController();
+
   final controllerPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     login(BuildContext context) {
       Services.login(controllerUsername.text, controllerPassword.text)
           .then((responseBody) {
+            setState(() {
+              _isLoading = true;
+            });
         if (responseBody!.status==true) {
+          setState(() {
+            _isLoading = true;
+          });
           User user =  responseBody;
           Session.setUser(user);
           context.read<CUser>().data = user;
@@ -18,6 +34,9 @@ class LoginPage extends StatelessWidget {
             context.go(AppRoute.loader);
           });
         } else {
+          setState(() {
+            _isLoading = true;
+          });
           DInfo.snackBarError(context, 'Login Failed');
         }
       });
@@ -72,7 +91,9 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               height: 8,
             ),
-            CupertinoButton(
+           _isLoading?Container(
+             margin: EdgeInsets.only(top: 20),
+             child: Center(child: CircularProgressIndicator(color: Colors.black,),),):CupertinoButton(
                 alignment: Alignment.centerLeft,
                 color: Colors.white,
                 child: Container(

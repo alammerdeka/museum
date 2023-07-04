@@ -10,7 +10,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
    String? _textGender;
    int? _intGender;
-
+  bool _isLoading = false;
   final controllerPengNama = TextEditingController();
 
   final controllerPengEmail = TextEditingController();
@@ -34,15 +34,27 @@ class _RegisterPageState extends State<RegisterPage> {
         _textGender!,
         controllerPengPass.text,
       ).then((responseBody) {
+        setState(() {
+          _isLoading = true;
+        });
         print(responseBody);
         if (responseBody!.status==true) {
+          setState(() {
+            _isLoading = false;
+          });
           DInfo.snackBarSuccess(context, 'Register Success');
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (_) => LoginPage()));
         } else {
           if (responseBody!.status==false) {
+            setState(() {
+              _isLoading = false;
+            });
             DInfo.snackBarError(context, responseBody.pengEmail!);
           } else {
+            setState(() {
+              _isLoading = false;
+            });
             DInfo.snackBarError(context, 'Register Failed');
           }
         }
@@ -137,7 +149,9 @@ decoration: InputDecoration(hintText: _textGender??'',hintStyle: TextStyle(color
             SizedBox(
               height: 8,
             ),
-            CupertinoButton(
+            _isLoading?Container(
+              margin: EdgeInsets.only(top: 20),
+              child: Center(child: CircularProgressIndicator(color: Colors.black,),),):CupertinoButton(
                 alignment: Alignment.centerLeft,
                 color: Colors.white,
                 child: Container(
