@@ -22,6 +22,8 @@ class User {
   String? pengDeskripsiPerusahaan;
   String? pengLinkPerusahaan;
   String? pengJenisKelamin;
+  String? identity;
+  String? password;
   bool? status;
 
   User(
@@ -47,6 +49,8 @@ class User {
         this.pengDeskripsiPerusahaan,
         this.pengLinkPerusahaan,
         this.pengJenisKelamin,
+        this.identity,
+        this.password,
         this.status});
 
   User.fromJson(Map<String, dynamic> json) {
@@ -72,6 +76,8 @@ class User {
     pengDeskripsiPerusahaan = json['pengDeskripsiPerusahaan'];
     pengLinkPerusahaan = json['pengLinkPerusahaan'];
     pengJenisKelamin = json['pengJenisKelamin'];
+    identity = json['identity']??'';
+    password = json['password']??'';
     status = json['status'];
   }
 
@@ -99,6 +105,8 @@ class User {
     data['pengDeskripsiPerusahaan'] = this.pengDeskripsiPerusahaan;
     data['pengLinkPerusahaan'] = this.pengLinkPerusahaan;
     data['pengJenisKelamin'] = this.pengJenisKelamin;
+    data['identity'] = this.identity;
+    data['password'] = this.password;
     data['status'] = this.status;
     return data;
   }

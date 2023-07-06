@@ -210,7 +210,9 @@ class _UserPageState extends State<UserPage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('Profil'),
+        appBar: AppBar(
+          backgroundColor: MyColor.myPrimCol,
+          title: Text('Profil'),
           backwardsCompatibility:false,centerTitle:true,
           automaticallyImplyLeading: false,),
         body: Padding(

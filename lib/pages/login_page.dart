@@ -35,8 +35,10 @@ class _LoginPageState extends State<LoginPage> {
           });
         } else {
           setState(() {
-            _isLoading = true;
+            _isLoading = false;
           });
+          responseBody.identity==null?null: DInfo.snackBarError(context, responseBody.identity!);
+          responseBody.password==null?null: DInfo.snackBarError(context,  responseBody.password!);
           DInfo.snackBarError(context, 'Login Failed');
         }
       });

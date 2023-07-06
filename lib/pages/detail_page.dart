@@ -52,7 +52,9 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(title: Text('Detail Museum'),backwardsCompatibility:false,centerTitle:true,
+          appBar: AppBar(
+            backgroundColor: MyColor.myPrimCol,
+            title: Text('Detail Museum'),backwardsCompatibility:false,centerTitle:true,
           ),
       body: SingleChildScrollView(
         child: Column(
