@@ -19,6 +19,9 @@ class _HomePageState extends State<HomePage> {
     MuseumProvider museumProvider = Provider.of<MuseumProvider>(context);
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(title: Text('Beranda'),
+              backwardsCompatibility:false,centerTitle:true,
+            automaticallyImplyLeading: false,),
       body: SingleChildScrollView(
         child: Column(
           children:

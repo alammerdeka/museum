@@ -31,6 +31,9 @@ class MyApp extends StatelessWidget {
           if (user != null) context.read<CUser>().data = user;
         });
         return MaterialApp.router(
+          theme: ThemeData(
+            primaryColor: Colors.black
+          ),
           debugShowCheckedModeBanner: false,
           routerConfig: AppRoute.routerConfig,
 

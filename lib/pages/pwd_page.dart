@@ -46,6 +46,9 @@ class _PwdPageState extends State<PwdPage> {
     }
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(title: Text('Ubah kata sandi'),
+          backwardsCompatibility:false,centerTitle:true,
+          ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(

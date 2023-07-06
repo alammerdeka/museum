@@ -7,6 +7,11 @@ class FaqPage extends StatelessWidget {
     FaqProvider faqProvider = Provider.of<FaqProvider>(context);
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('Faq'),
+          backwardsCompatibility:false,centerTitle:true,
+          automaticallyImplyLeading: false,
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),

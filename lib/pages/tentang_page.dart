@@ -7,6 +7,11 @@ class TentangPage extends StatelessWidget {
     TentangProvider tentangProvider = Provider.of<TentangProvider>(context);
     return  SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('Tentang'),
+          backwardsCompatibility:false,centerTitle:true,
+          automaticallyImplyLeading: false,
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
