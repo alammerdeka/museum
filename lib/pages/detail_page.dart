@@ -66,11 +66,16 @@ class _DetailPageState extends State<DetailPage> {
               child: _controller.value.isInitialized
                   ? Column(
                       children: <Widget>[
-                        SizedBox(
-                          height: 200,
-                          child: AspectRatio(
-                            aspectRatio: _controller.value.aspectRatio,
-                            child: VideoPlayer(_controller),
+                        Expanded(
+
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: SizedBox(
+                              height: _controller.value.size?.height ?? 0,
+                              width: _controller.value.size?.width ?? 0,
+                              child: VideoPlayer(_controller),
+                            ),
+
                           ),
                         ),
                         const SizedBox(
