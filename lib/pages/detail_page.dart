@@ -66,7 +66,10 @@ class _DetailPageState extends State<DetailPage> {
                       children: <Widget>[
                         SizedBox(
                           height: 200,
-                          child: VideoPlayer(_controller),
+                          child: AspectRatio(
+                            aspectRatio: _controller.value.aspectRatio,
+                            child: VideoPlayer(_controller),
+                          ),
                         ),
                         const SizedBox(
                           height: 12,
