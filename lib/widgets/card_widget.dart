@@ -1,16 +1,23 @@
 part of 'widgets.dart';
 
-class CardWidget extends StatelessWidget {
+class CardWidget extends StatefulWidget {
   const CardWidget(Museum e, {Key? key, required this.museum})
       : super(key: key);
   final Museum museum;
+
+  @override
+  State<CardWidget> createState() => _CardWidgetState();
+}
+
+class _CardWidgetState extends State<CardWidget> {
+  RegExp exp = RegExp(r"<[^>]*>",multiLine: true,caseSensitive: true);
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => DetailPage(
-                  museum: museum,
+                  museum: widget.museum,
                 )));
       },
       child: Container(
@@ -35,7 +42,7 @@ class CardWidget extends StatelessWidget {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        'https://${museum.tautanfoto!}',
+                        'https://${widget.museum.tautanfoto!}',
                         fit: BoxFit.cover,
                       )),
                 ),
@@ -47,15 +54,13 @@ class CardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        museum.museumNama!,
+                        widget.museum.museumNama!,
                         style: const TextStyle(fontSize: 18),
                       ), Text(
                         'Deskripsi',
                         style: TextStyle(fontSize: 12, color: MyColor.myPrimCol),
                       ),
-                      SizedBox(
-                          height: 100,
-                          child: Html(data: museum.museumDeskripsi)),
+                      Text(widget.museum.museumDeskripsi!.replaceAll(exp, ' '), softWrap: true, overflow: TextOverflow.visible, maxLines: 3,),
                       const SizedBox(height: 8,),
                       Row(
                         children: [
@@ -64,7 +69,7 @@ class CardWidget extends StatelessWidget {
                             width: 4,
                           ),
 
-                          Text(museum.museumDibuatPada!,style: TextStyle(fontSize: 12),)
+                          Text(widget.museum.museumDibuatPada!,style: TextStyle(fontSize: 12),)
                         ],
                       )
                     ],

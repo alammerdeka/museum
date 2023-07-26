@@ -50,7 +50,8 @@ class _RegisterPageState extends State<RegisterPage> {
             setState(() {
               _isLoading = false;
             });
-            DInfo.snackBarError(context, responseBody.pengEmail!);
+            responseBody.pengPass==null?null: DInfo.snackBarError(context, responseBody.pengPass!);
+            responseBody.pengEmail==null?null: DInfo.snackBarError(context, responseBody.pengEmail!);
           } else {
             setState(() {
               _isLoading = false;
@@ -165,14 +166,19 @@ decoration: InputDecoration(hintText: _textGender??'',hintStyle: TextStyle(color
                 ),
                 onPressed: () {
                   print(controllerPengTlp.text);
-                  register(
+                  if(controllerPengNama.text.isEmpty||controllerPengEmail.text.isEmpty||controllerPengInstansi.text.isEmpty||controllerPengTlp.text.isEmpty||controllerPengPass.text.isEmpty||_textGender==null){
+                    DInfo.snackBarError(context, 'form tidak boleh kosong');
+                  }else{
+                    register(
                       controllerPengNama.text,
                       controllerPengEmail.text,
-                    controllerPengTlp.text,
+                      controllerPengTlp.text,
                       controllerPengInstansi.text,
                       _textGender!,
                       controllerPengPass.text,
-                  );
+                    );
+                  }
+
 
                 }),
             SizedBox(

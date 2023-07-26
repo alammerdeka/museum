@@ -36,7 +36,8 @@ class _PwdPageState extends State<PwdPage> {
             setState(() {
               _isLoading = false;
             });
-            DInfo.snackBarError(context, responseBody.pengEmail!);
+            responseBody.pwdNew==null?null:DInfo.snackBarError(context, responseBody.pwdNew!);
+            DInfo.snackBarError(context, responseBody.message!);
           } else {
             DInfo.snackBarError(context, 'Gagal ubah kata sandi');
           }
@@ -46,7 +47,9 @@ class _PwdPageState extends State<PwdPage> {
     }
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('Ubah kata sandi'),
+        appBar: AppBar(
+          backgroundColor: MyColor.myPrimCol,
+          title: Text('Ubah kata sandi'),
           backwardsCompatibility:false,centerTitle:true,
           ),
         body: Padding(
@@ -125,7 +128,7 @@ class _PwdPageState extends State<PwdPage> {
                       setState(() {
                         _isLoading = false;
                       });
-                      DInfo.snackBarError(context, 'Kata sandi tidak sama');
+                      DInfo.snackBarError(context, 'Kata baru sandi tidak sama');
                     }else{
                       setState(() {
                         _isLoading = true;

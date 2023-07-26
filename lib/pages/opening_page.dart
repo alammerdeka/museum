@@ -32,7 +32,7 @@ class OpeningPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20,),
                 Text(
-                  'Museum guide designed by Pegah Navid. Connect with them on Dribbble; the global community for designers and creative professionals.',
+                  '',
                   textAlign: TextAlign.justify,
                   style: TextStyle(fontSize: 16),
                 ),
