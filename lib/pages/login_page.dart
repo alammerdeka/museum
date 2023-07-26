@@ -43,20 +43,35 @@ class _LoginPageState extends State<LoginPage> {
         }
       });
     }
+    Widget img() {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children:  [
+           Image.asset('assets/bannerin.png',width: MediaQuery.of(context).size.width/2,)
+          ],
+        ),
+      );
+    }
     Widget header() {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Text(
-              'Masuk.',
-              style: TextStyle(fontSize: 44, fontWeight: FontWeight.bold),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Masuk.',
+                style: TextStyle(fontSize: 44, fontWeight: FontWeight.bold),
+              ),
             )
           ],
         ),
       );
     }
+
 
     Widget form() {
       return Form(
@@ -125,9 +140,11 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          img(),
+          const SizedBox(height: 30,),
           header(),
           form(),
         ],

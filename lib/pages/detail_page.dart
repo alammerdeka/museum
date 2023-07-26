@@ -62,10 +62,11 @@ class _DetailPageState extends State<DetailPage> {
           children: [
             Container(
               color: MyColor.myPrimCol,
-              height: 300,
+              height: 400,
               child: _controller.value.isInitialized
                   ? Column(
                       children: <Widget>[
+                        const SizedBox(height: 19,),
                         Expanded(
 
                           child: FittedBox(
@@ -73,7 +74,9 @@ class _DetailPageState extends State<DetailPage> {
                             child: SizedBox(
                               height: _controller.value.size?.height ?? 0,
                               width: _controller.value.size?.width ?? 0,
-                              child: VideoPlayer(_controller),
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: VideoPlayer(_controller)),
                             ),
 
                           ),
@@ -92,9 +95,9 @@ class _DetailPageState extends State<DetailPage> {
                               child: VideoProgressIndicator(
                                 _controller,
                                 allowScrubbing: true,
-                                colors: VideoProgressColors(
-                                    bufferedColor: Colors.redAccent,
-                                    playedColor: Colors.white),
+                                colors: const VideoProgressColors(
+                                    bufferedColor: Colors.white,
+                                    playedColor: Colors.redAccent),
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 0, horizontal: 12),
                               ),
@@ -120,9 +123,12 @@ class _DetailPageState extends State<DetailPage> {
                                   : CupertinoIcons.play_arrow_solid,
                               color: Colors.white,
                             )),
-                        Text(
-                          widget.museum.museumNama!,
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            widget.museum.museumNama!,
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white),
+                          ),
                         )
                       ],
                     )
@@ -140,7 +146,7 @@ class _DetailPageState extends State<DetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                      Text(
-                      'Ditemukan Oleh',
+                      'Ditemukan',
                       style: TextStyle(fontSize: 12, color: MyColor.myPrimCol),
                     ),
                     Text(widget.museum.museumDitemukan!),
@@ -174,7 +180,10 @@ class _DetailPageState extends State<DetailPage> {
               '   Deskripsi',
               style: TextStyle(fontSize: 12, color: MyColor.myPrimCol),
             ),
-            Html(data: widget.museum.museumDeskripsi),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Html(data: widget.museum.museumDeskripsi),
+            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
               width: MediaQuery.of(context).size.width,
