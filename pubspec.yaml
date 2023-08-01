@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   images_picker: ^1.2.11
   http: ^0.13.6
-  video_player: ^2.4.5
   awesome_bottom_bar: ^1.2.2
   d_info: ^0.2.0
   d_method: ^0.0.3
@@ -49,7 +48,10 @@ dependencies:
   supercharged: ^2.1.1
   flutter_html: ^2.2.1
   liquid_pull_to_refresh: ^3.0.1
-
+  google_fonts: ^4.0.4
+  chewie: ^1.5.0
+  auto_orientation: ^2.3.1
+  video_player: ^2.4.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

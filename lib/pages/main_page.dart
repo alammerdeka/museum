@@ -13,17 +13,17 @@ class _MainPageState extends State<MainPage> {
       title: 'Beranda',
     ),
     TabItem(
-      icon: CupertinoIcons.question_square_fill,
-      title: 'Faq',
+      icon: CupertinoIcons.square_list_fill,
+      title: 'List Museum',
     ),
     TabItem(
-      icon: CupertinoIcons.square_list_fill,
+      icon: CupertinoIcons.question_square_fill,
       title: 'Tentang',
     ),
-    TabItem(
-      icon: CupertinoIcons.person_crop_circle,
-      title: 'Profil',
-    ),
+    // TabItem(
+    //   icon: CupertinoIcons.person_crop_circle,
+    //   title: 'Profil',
+    // ),
   ];
   int selectedPage = 0;
   PageController pageController = PageController(initialPage: 0);
@@ -40,9 +40,9 @@ class _MainPageState extends State<MainPage> {
         },
         children: [
           HomePage(),
-          FaqPage(),
+          HomeList(),
           TentangPage(),
-          UserPage(),
+          // UserPage(),
         ],
       ),
       bottomNavigationBar: Container(

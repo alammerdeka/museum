@@ -5,5 +5,5 @@ import 'package:images_picker/images_picker.dart';
 import 'package:skripsiv1/models/models.dart';
 import 'package:skripsiv1/pages/pages.dart';
 import 'package:skripsiv1/utils/utils.dart';
-
+part 'card_widget_list.dart';
 part 'card_widget.dart';

@@ -31,7 +31,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     MuseumProvider museumProvider = Provider.of<MuseumProvider>(context);
     Widget listData(){
-      return Column(children:
+      return GridView.count(
+          crossAxisCount: 2,
+          padding: EdgeInsets.symmetric(horizontal: 4,vertical: 4),
+          children:
           museumProvider.museum.map((e) => CardWidget(e, museum: e,)).toList()
       );
     }
@@ -39,22 +42,17 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: MyColor.myPrimCol,
-            title: Text('Beranda'),
+            title: Text('Beranda',style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 18, color: Colors.white)),),
               backwardsCompatibility:false,centerTitle:true,
             automaticallyImplyLeading: false,),
       body: LiquidPullToRefresh(
         color: MyColor.myPrimCol,
         onRefresh: _handleRefresh,
-        child: SingleChildScrollView(
-          child: Column(
-            children:[
-              listData(),
-              SizedBox(height: MediaQuery.of(context).size.height/2,)
-            ]
-
-              ,
-
-          ),
+        child: Stack(
+          children: [
+            Image.asset('assets/pattern_bg.png', fit: BoxFit.cover, height: MediaQuery.of(context).size.height, opacity: const AlwaysStoppedAnimation(.7),),
+            listData(),
+          ],
         ),
       ),
     ));

@@ -15,14 +15,14 @@ class AppRoute {
     redirect: (context, state) async {
       User? user = await Session.getUser();
       if (user == null) {
-        if (state.location == login || state.location == register) {
+        if (state.location == walkThrough || state.location == walkThrough) {
           return null;
         }
 
         return walkThrough;
       }
 
-      return loader;
+      return walkThrough;
     },
     routes: [
       GoRoute(

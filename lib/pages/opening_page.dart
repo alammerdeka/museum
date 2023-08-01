@@ -1,7 +1,28 @@
 part of 'pages.dart';
 
-class OpeningPage extends StatelessWidget {
+class OpeningPage extends StatefulWidget {
   const OpeningPage({Key? key}) : super(key: key);
+
+  @override
+  State<OpeningPage> createState() => _OpeningPageState();
+}
+
+class _OpeningPageState extends State<OpeningPage> {
+  getInit() async {
+    await Provider.of<MuseumProvider>(context,listen:false).getMuseumList();
+    await Provider.of<TentangProvider>(context,listen:false).getTentang();
+    await Provider.of<FaqProvider>(context,listen:false).getUnitKerja();
+    if (context.mounted) {
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>const MainPage()));
+    }
+
+
+  }
+  @override
+  void initState() {
+    super.initState();
+    getInit();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +40,24 @@ class OpeningPage extends StatelessWidget {
 
     Widget description() {
       return SizedBox(
-
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:  const [
+              children:   [
                 SizedBox(height: 20,),
-                Text(
-                  'Selamat Datang di Aplikasi Museum Banten',
-                  style: TextStyle(fontSize: 24),
+                Image.asset(
+                  'assets/bannerin.png',
+                  scale: 1.4,
                 ),
-                SizedBox(height: 20,),
-                Text(
+                SizedBox(height: 10,),
+
+                 Text(
+                  'Selamat Datang di Aplikasi Museum Banten',
+                  style: GoogleFonts.poppins(textStyle: TextStyle(fontWeight: FontWeight.w500, color: Colors.black54,fontSize: 20)),
+                ),
+                const SizedBox(height: 20,),
+                const Text(
                   '',
                   textAlign: TextAlign.justify,
                   style: TextStyle(fontSize: 16),
@@ -43,22 +69,17 @@ class OpeningPage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: ListView(
+      body: Stack(
         children: [
-          image(),
-          description(),
+          Image.asset('assets/banner_white.jpg',height: MediaQuery.of(context).size.height, width: MediaQuery.of(context).size.width,fit: BoxFit.cover,),
+          ListView(
+            children: [
+              // image(),
+              description(),
+            ],
+          ),
         ],
       ),
-      bottomNavigationBar: CupertinoButton(
-          alignment: Alignment.centerLeft,
-          color: Colors.white,
-          child: Container(
-            height: 60,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black),
-
-            child: const Center(child: Text('Lanjutkan'),),), onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (_)=>LoginPage()));
-      }),
     );
   }
 }

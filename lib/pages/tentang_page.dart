@@ -29,7 +29,7 @@ class _TentangPageState extends State<TentangPage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: MyColor.myPrimCol,
-          title: Text('Tentang'),
+          title: Text('Tentang', style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 18, color: Colors.white)),),
           backwardsCompatibility: false,
           centerTitle: true,
           automaticallyImplyLeading: false,
@@ -37,14 +37,25 @@ class _TentangPageState extends State<TentangPage> {
         body: LiquidPullToRefresh(
           color: MyColor.myPrimCol,
           onRefresh: _handleRefresh,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
-              child: Column(
-                children: [Html(data: tentangProvider.tentangs.tentangIsi!), SizedBox(height: MediaQuery.of(context).size.height,)],
+          child: Stack(
+            children: [
+              Image.asset('assets/pattern_bg.png', fit: BoxFit.cover, height: MediaQuery.of(context).size.height, opacity: const AlwaysStoppedAnimation(.7),),
+              SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white
+                    ),
+                    child: Column(
+                      children: [Html(data: tentangProvider.tentangs.tentangIsi!), SizedBox(height: MediaQuery.of(context).size.height,)],
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

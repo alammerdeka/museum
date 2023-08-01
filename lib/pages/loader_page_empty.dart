@@ -31,7 +31,7 @@ class _LoaderPageEmptyState extends State<LoaderPageEmpty> {
       home: Scaffold(
         backgroundColor: Colors.white,
             body: Center(
-              child: Image.asset('assets/bannerin.png',scale: 1.5,),
+              child: CircularProgressIndicator(),
             ),
         bottomNavigationBar: Container(
             height: 60,
