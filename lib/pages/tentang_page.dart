@@ -34,28 +34,32 @@ class _TentangPageState extends State<TentangPage> {
           centerTitle: true,
           automaticallyImplyLeading: false,
         ),
-        body: LiquidPullToRefresh(
-          color: MyColor.myPrimCol,
-          onRefresh: _handleRefresh,
-          child: Stack(
-            children: [
-              Image.asset('assets/pattern_bg.png', fit: BoxFit.cover, height: MediaQuery.of(context).size.height, opacity: const AlwaysStoppedAnimation(.7),),
-              SingleChildScrollView(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white
-                    ),
-                    child: Column(
-                      children: [Html(data: tentangProvider.tentangs.tentangIsi!), SizedBox(height: MediaQuery.of(context).size.height,)],
-                    ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image:  AssetImage('assets/pattern_bg.png', ),
+              fit: BoxFit.cover,
+              opacity: 0.7,
+            ),
+          ),
+          child: LiquidPullToRefresh(
+            color: MyColor.myPrimCol,
+            onRefresh: _handleRefresh,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white
+                  ),
+                  child: Column(
+                    children: [Html(data: tentangProvider.tentangs.tentangIsi!), SizedBox(height: MediaQuery.of(context).size.height,)],
                   ),
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),

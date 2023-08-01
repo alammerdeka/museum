@@ -45,14 +45,18 @@ class _HomePageState extends State<HomePage> {
             title: Text('Beranda',style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 18, color: Colors.white)),),
               backwardsCompatibility:false,centerTitle:true,
             automaticallyImplyLeading: false,),
-      body: LiquidPullToRefresh(
-        color: MyColor.myPrimCol,
-        onRefresh: _handleRefresh,
-        child: Stack(
-          children: [
-            Image.asset('assets/pattern_bg.png', fit: BoxFit.cover, height: MediaQuery.of(context).size.height, opacity: const AlwaysStoppedAnimation(.7),),
-            listData(),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image:  AssetImage('assets/pattern_bg.png', ),
+            fit: BoxFit.cover,
+            opacity: 0.7,
+          ),
+        ),
+        child: LiquidPullToRefresh(
+          color: MyColor.myPrimCol,
+          onRefresh: _handleRefresh,
+          child: listData(),
         ),
       ),
     ));

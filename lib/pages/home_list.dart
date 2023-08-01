@@ -42,19 +42,19 @@ class _HomeListState extends State<HomeList> {
             title: Text('Beranda'),
             backwardsCompatibility:false,centerTitle:true,
             automaticallyImplyLeading: false,),
-          body: LiquidPullToRefresh(
-            color: MyColor.myPrimCol,
-            onRefresh: _handleRefresh,
-            child: SingleChildScrollView(
-              child: Stack(
-                children:[
-                  Image.asset('assets/pattern_bg.png', fit: BoxFit.cover, height: MediaQuery.of(context).size.height, opacity: const AlwaysStoppedAnimation(.7),),
-                  listData(),
-
-                ]
-
-                ,
-
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image:  AssetImage('assets/pattern_bg.png', ),
+                fit: BoxFit.cover,
+                opacity: 0.7,
+              ),
+            ),
+            child: LiquidPullToRefresh(
+              color: MyColor.myPrimCol,
+              onRefresh: _handleRefresh,
+              child: SingleChildScrollView(
+                child: listData(),
               ),
             ),
           ),
